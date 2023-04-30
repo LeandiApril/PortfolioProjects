@@ -68,7 +68,7 @@ Where continent is not null
 Group by date
 Order by 1, 2
 
--- GLOBAL NUMBERS NO DATE(Additional Alex)
+-- GLOBAL NUMBERS NO DATE(Additional A)
 Select SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, SUM(cast(new_deaths as int))/SUM(New_Cases)*100 as DeathPercentage
 From PortfolioProject..CovidDeaths
 --Where location like '%south africa%'
@@ -88,7 +88,7 @@ Where dea.continent is not null
 Order by 2,3
 
 
--- Looking at Total Population vs Vaccinations (Additional Alex)
+-- Looking at Total Population vs Vaccinations (Additional A)
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM (CONVERT(INT,vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location,dea.Date) as RollingPeopleVaccinated
 --, (RollingPeopleVaccinated/population)*100
 From PortfolioProject..CovidDeaths dea
@@ -115,8 +115,6 @@ Where dea.continent is not null
 )
 Select *, (RollingPeopleVaccinated/Population)*100 as Percentage
 From PopvsVac
-
-
 
 
 -- TEMP TABLE
